@@ -6,4 +6,4 @@ https://www.boredapi.com/api/
 
 
 Description app:
-Afficher une activité random à faire
+Afficher les salles de la ville de Nantes à la location
