@@ -6,10 +6,10 @@ https://www.boredapi.com/api/
 
 
 Description app plus tard:
-Afficher les salles de la ville de Nantes à la location
+
 
 Lien API PLUS TARD:
 
 Description app plus tard:
-
+Afficher les salles de la ville de Nantes à la location
 
