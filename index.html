@@ -14,7 +14,7 @@
 	<div id="appvuesimple">
 	<div class="row">
 		<h1 class="text-center">App_Vue_Simple</h1>
-		<h2>Welcome</h2>
+		<h2 class="text-center">Welcome</h2>
 		<template v-for="branch in branches">
 			<input
 					type="radio"
@@ -25,7 +25,17 @@
 			/>
 			<label :for="branch">{{ branch }}</label>
 		</template>
-
+		<form class="d-flex justify-content-center">
+			<select id="nbparticipants" name="nbarticipants" v-model= participants
+					class="form-select w-25 p-3" aria-label="Default select example">
+				<option selected>Number of participants</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</form>
 		<div class="col-sm">
 			<p><span>Activité:{{activity}}</span></p>
 			</div>
@@ -33,9 +43,9 @@
 				<p><span>Type:{{ type }}</span></p>
 			</div>
 			<div class="col-sm">
-				<p><span>Les participants:{{ participants}}</span></p>
+				<p><span>Les participants:{{ participants }}</span></p>
 			</div>
-		<button type='button'  class="btn btn-primary" v-on:click="fetchDataAsync" >Clique</button>
+		<button type='button' class="btn btn-primary" v-on:click="fetchDataAsync" v-model= participants v-on:change="updateData();" >Choose</button>
 		</div>
 	</div>
 	</div>
@@ -73,6 +83,21 @@
                     }
                 },
             },
+            updateData(){
+                let nbparticipants = document.getElementById('nbparticipants').value
+                apiURLparticipant = "https://www.boredapi.com/api/activity?participants=" + String(nbparticipants);
+                console.log(apiURLparticipant)
+                const self = this;
+                axios
+                    .get(apiURLparticipant, config)
+                    .then(function (response) {
+                        self.data = response.data;
+                        console.log(self.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }).mount("#appvuesimple");
 	</script>
 	</body>
